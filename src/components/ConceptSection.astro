@@ -1,0 +1,71 @@
+---
+import SectionTitle from "./SectionTitle.astro";
+
+const kodawari = [
+  {
+    number: "01",
+    title: "肴",
+    subtitle: "SAKANA",
+    body: "旬の食材を活かした肴をご用意しております。\n\n素材の持ち味を大切に、丁寧に仕上げた一品一品をお楽しみください。カウンター越しに調理の様子をご覧いただけるのも、当店ならではの楽しみです。",
+  },
+  {
+    number: "02",
+    title: "酒",
+    subtitle: "SAKE",
+    body: "日本酒を中心に、料理に寄り添うお酒を取り揃えております。\n\n季節ごとの限定酒や、店主が選んだこだわりの一本をご提案いたします。お好みやその日の気分に合わせて、お気軽にご相談ください。",
+  },
+  {
+    number: "03",
+    title: "空間",
+    subtitle: "ATMOSPHERE",
+    body: "カウンターだけの小さな居酒屋です。\n\nお一人様でもふらりと立ち寄れる、肩肘張らない雰囲気を大切にしています。店主との会話を楽しみながら、ゆっくりとした時間をお過ごしください。",
+  },
+];
+---
+
+<section id="concept" class="py-24 md:py-32 px-4 bg-card">
+  <div class="max-w-5xl mx-auto">
+    <div class="fade-up">
+      <SectionTitle title="こだわり" subtitle="CONCEPT" />
+    </div>
+
+    <blockquote class="text-center mt-4 mb-20 md:mb-28 fade-up">
+      <p
+        class="text-sm md:text-base leading-loose text-foreground/70 whitespace-pre-line"
+      >
+        {"一杯の酒と、心を込めた肴と。\nカウンター越しの会話を楽しむ、\n小さな居酒屋です。"}
+      </p>
+    </blockquote>
+
+    <div class="space-y-20 md:space-y-28">
+      {
+        kodawari.map((item) => (
+          <div class="max-w-2xl mx-auto fade-up">
+            <p class="font-[family-name:var(--font-display)] text-gold tracking-[0.3em] text-sm mb-2">
+              {item.number}
+            </p>
+            <h3 class="text-xl md:text-2xl font-bold tracking-wider mb-1">
+              {item.title}
+            </h3>
+            <p class="font-[family-name:var(--font-display)] text-muted text-xs tracking-[0.2em] uppercase mb-4">
+              {item.subtitle}
+            </p>
+            <div class="w-8 h-[1px] bg-gold mb-6 line-grow" />
+            <p class="text-sm leading-relaxed text-foreground/70 whitespace-pre-line">
+              {item.body}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="mt-24 md:mt-32 text-center fade-up">
+      <div class="w-12 h-[1px] bg-foreground/20 mx-auto mb-6"></div>
+      <p
+        class="font-[family-name:var(--font-display)] text-sm tracking-[0.2em] text-muted"
+      >
+        酒と肴 なが田
+      </p>
+    </div>
+  </div>
+</section>

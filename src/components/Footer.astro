@@ -1,0 +1,94 @@
+---
+import { storeInfo } from "../data/storeInfo";
+---
+
+<footer class="bg-foreground text-background">
+  <div class="max-w-6xl mx-auto px-4 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Store info -->
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <img
+            src="/icon.jpg"
+            alt="酒と肴 なが田"
+            width="36"
+            height="36"
+            class="h-9 w-9 object-contain rounded-full invert"
+          />
+          <h3 class="text-lg font-bold tracking-wider">{storeInfo.name}</h3>
+        </div>
+        <p class="text-sm text-background/60 leading-relaxed">
+          {storeInfo.address}
+          <br />
+          TEL: {storeInfo.phone}
+        </p>
+      </div>
+
+      <!-- Navigation -->
+      <div>
+        <h3
+          class="text-sm font-bold tracking-wider text-background/80 mb-4"
+        >
+          NAVIGATION
+        </h3>
+        <ul class="space-y-2">
+          {
+            [
+              { href: "/", label: "トップ" },
+              { href: "/menu", label: "メニュー" },
+              { href: "/access", label: "アクセス" },
+            ].map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  class="text-sm text-background/50 hover:text-background transition-colors"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <!-- Hours & SNS -->
+      <div>
+        <h3
+          class="text-sm font-bold tracking-wider text-background/80 mb-4"
+        >
+          営業時間
+        </h3>
+        {
+          storeInfo.hours.map((h) => (
+            <p class="text-sm text-background/50">
+              {h.label}: {h.time}
+            </p>
+          ))
+        }
+        <p class="text-sm text-background/50 mt-1">
+          営業日: {storeInfo.businessDays}
+        </p>
+        <p class="text-sm text-background/50 mt-1">
+          定休日: {storeInfo.closedDay}
+        </p>
+        <div class="mt-4">
+          <a
+            href={storeInfo.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-sm text-background/50 hover:text-background transition-colors"
+          >
+            Instagram
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-t border-background/20 mt-8 pt-6 text-center">
+      <p class="text-xs text-background/40">
+        &copy; {new Date().getFullYear()}
+        {storeInfo.name}. All Rights Reserved.
+      </p>
+    </div>
+  </div>
+</footer>

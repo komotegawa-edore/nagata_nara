@@ -1,0 +1,106 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { storeInfo } from "../data/storeInfo";
+
+const infoRows = [
+  { label: "住所", value: storeInfo.address },
+  {
+    label: "電話番号",
+    value: storeInfo.phone,
+    href: `tel:${storeInfo.phone.replace(/-/g, "")}`,
+  },
+  { label: "アクセス", value: storeInfo.access },
+  ...storeInfo.hours.map((h) => ({
+    label: `営業時間（${h.label}）`,
+    value: h.time,
+  })),
+  { label: "営業日", value: storeInfo.businessDays },
+  { label: "定休日", value: storeInfo.closedDay },
+  { label: "席数", value: storeInfo.seats },
+  { label: "お支払い", value: storeInfo.payment },
+];
+---
+
+<Layout title="アクセス" description="酒と肴 なが田へのアクセス。奈良市三条町606-96 田中ビル102。JR奈良駅から徒歩約5分。">
+  <div class="pt-20 md:pt-24">
+    <!-- Page header -->
+    <div class="py-16 md:py-24 px-4 text-center bg-card">
+      <p
+        class="font-[family-name:var(--font-display)] text-muted tracking-[0.5em] text-xs uppercase mb-4"
+      >
+        ACCESS
+      </p>
+      <h1 class="text-3xl md:text-4xl font-bold tracking-wider">アクセス</h1>
+    </div>
+
+    <!-- Map section -->
+    <section class="py-16 md:py-24 px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="aspect-[16/9] w-full fade-up">
+          <iframe
+            src={storeInfo.googleMapsEmbed}
+            width="100%"
+            height="100%"
+            style="border:0"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- Info table -->
+    <section class="py-16 md:py-24 px-4 bg-card">
+      <div class="max-w-3xl mx-auto">
+        <div class="fade-up">
+          <table class="w-full text-sm">
+            <tbody>
+              {
+                infoRows.map((row) => (
+                  <tr class="border-b border-border/30">
+                    <th class="py-4 pr-6 text-left text-foreground font-medium w-44 align-top whitespace-nowrap">
+                      {row.label}
+                    </th>
+                    <td class="py-4 text-foreground/80">
+                      {"href" in row && row.href ? (
+                        <a
+                          href={row.href}
+                          class="hover:text-accent transition-colors"
+                        >
+                          {row.value}
+                        </a>
+                      ) : (
+                        row.value
+                      )}
+                    </td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Directions -->
+    <section class="py-16 md:py-24 px-4">
+      <div class="max-w-3xl mx-auto">
+        <div class="fade-up">
+          <h2
+            class="text-lg font-bold text-foreground tracking-wider mb-6"
+          >
+            道順のご案内
+          </h2>
+          <div class="space-y-4 text-sm text-foreground/80">
+            <p>
+              JR奈良駅より徒歩約5分。近鉄奈良駅より徒歩約10分。
+            </p>
+            <p>
+              三条町の田中ビル1階（102号室）にございます。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>

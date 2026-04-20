@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: #ffffff;
+  --color-foreground: #1a1a1a;
+  --color-card: #f5f5f0;
+  --color-gold: #b8860b;
+  --color-gold-light: #d4a854;
+  --color-accent: #8b4513;
+  --color-accent-dark: #6b3410;
+  --color-muted: #777777;
+  --color-border: #e0e0e0;
+  --font-serif: "Noto Serif JP", serif;
+  --font-display: "Cormorant Garamond", serif;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-serif);
+  line-height: 1.8;
+  overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+/* Scroll animations */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-in {
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+}
+
+.line-grow {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.6s ease 0.3s;
+}
+
+.line-grow.visible {
+  transform: scaleX(1);
+}
